@@ -7,13 +7,6 @@ class Player
   def take_turn
     puts "Where do you want to mark?\n"
     requested_move = gets.chomp.to_sym
-    # puts requested_move.to_sym.inspect
-     if Game.position_occupied?(requeted_move)
-       @position_values[requeted_move] = @marker
-     else
-
-     end
-     Game.print_board
   end
 end
 
@@ -49,7 +42,7 @@ class Game
   end
 
   def position_occupied?(symbol)
-    if @position_values[symbol] == " "
+    if @position_values[symbol.to_sym] == " "
       false
     else
       true
@@ -63,4 +56,6 @@ player2 = Player.new("Christina", "O")
 our_game = Game.new
 our_game.print_board
 
-player1.take_turn
+# player1.take_turn
+
+puts our_game.position_occupied?(a1)
