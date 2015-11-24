@@ -6,11 +6,14 @@ class Player
 
   def take_turn
     puts "Where do you want to mark?\n"
-    requested_move = gets.chomp
-    puts requested_move.to_sym.inspect
-  end
+    requested_move = gets.chomp.to_sym
+    # puts requested_move.to_sym.inspect
+     if Game.position_occupied?(requeted_move)
+       @position_values[requeted_move] = @marker
+     else
 
-  def position_occupied?
+     end
+     Game.print_board
   end
 end
 
@@ -45,7 +48,12 @@ class Game
                       [:a3, :b2, :c1]]
   end
 
-  def possible_move?
+  def position_occupied?(symbol)
+    if @position_values[symbol] == " "
+      false
+    else
+      true
+    end
   end
 end
 
