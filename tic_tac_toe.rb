@@ -3,7 +3,6 @@ class Game
     @position_values = {:a1 => " ", :b1 => " ", :c1 => " ",
                         :a2 => " ", :b2 => " ", :c2 => " ",
                         :a3 => " ", :b3 => " ", :c3 => " "}
-		# @board = 
   
   	# 8 possibilities
   	@winning_boards = [[:a1, :b1, :c1], # horizontal
@@ -28,11 +27,10 @@ class Game
   #{@position_values[:a3]} | #{@position_values[:b3]} | #{@position_values[:c3]}\n\n"
   end
   
-  def take_turn
-  	print_board
+  def take_turn(marker)
     puts "Where do you want to mark?\n"
     requested_move = gets.chomp.to_sym
-		@position_values[requested_move] = "X"
+		@position_values[requested_move] = marker
 		@turns_taken += 1
 		puts @position_values[:a1]
 		print_board
@@ -55,5 +53,14 @@ class Player
 end
 
 our_game = Game.new
+our_game.print_board
 
-our_game.take_turn
+our_game.take_turn("X")
+our_game.take_turn("O")
+our_game.take_turn("X")
+our_game.take_turn("O")
+our_game.take_turn("X")
+our_game.take_turn("O")
+our_game.take_turn("X")
+our_game.take_turn("O")
+our_game.take_turn("X")
