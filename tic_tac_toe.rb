@@ -30,21 +30,31 @@ class Game
   def take_turn(marker)
     puts "Where do you want to mark?\n"
     requested_move = gets.chomp.to_sym
-		@position_values[requested_move] = marker
+    
+    until position_valid?(requested_move) do
+      puts "That is not a valid selection."
+    	puts "Where do you want to mark?\n"
+      requested_move = gets.chomp.to_sym
+    end
+    
+    if position_valid?(requested_move)
+      @position_values[requested_move] = marker
+    end
+		
 		@turns_taken += 1
-		puts @position_values[:a1]
 		print_board
   end
 
-  def position_occupied?(symbol)
-    if @position_values[symbol.to_sym] == " "
-      false
-    else
+  def position_valid?(choice)
+    if @position_values[choice] == " "
       true
+    else
+      false
     end
   end
 end
 
+# This is currently not in use!
 class Player
   def initialize(name, marker)
     @name = name
